@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14b57231-1169-4a2e-a6b9-a79a8bbbc014" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/docker/Dockerfile.jvm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/docker/Dockerfile.legacy-jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/docker/Dockerfile.native" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/docker/Dockerfile.native-micro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uniqa/GreetingResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/uniqa/GreetingResourceIT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/uniqa/GreetingResourceTest.java" beforeDir="false" />
-    </list>
+    <list default="true" id="14b57231-1169-4a2e-a6b9-a79a8bbbc014" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,19 +28,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.simple-poc [io.quarkus.platform:quarkus-maven-plugin:3.30.6:dev].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Ivaylo Hubenov/Desktop/simple-poc"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.simple-poc [io.quarkus.platform:quarkus-maven-plugin:3.30.6:dev].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ivaylo Hubenov/Desktop/simple-poc&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="14b57231-1169-4a2e-a6b9-a79a8bbbc014" name="Changes" comment="" />
