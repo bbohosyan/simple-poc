@@ -1,16 +1,12 @@
-package org.uniqa.entity;
+package org.uniqa.dto;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Size;
 
-@Entity
-public class TableRow extends PanacheEntity {
+public class CreateTableRowRequest {
 
     @NotNull(message = "Type Number is required")
     @Min(value = 1, message = "Type Number must be at least 1")
@@ -22,6 +18,5 @@ public class TableRow extends PanacheEntity {
 
     @NotBlank(message = "Type Free Text is required")
     @Size(max = 1000, message = "Type Free Text must not exceed 1000 characters")
-    @Column(length = 1000, columnDefinition = "text")
     public String typeFreeText;
 }

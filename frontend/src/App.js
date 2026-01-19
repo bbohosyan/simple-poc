@@ -12,7 +12,7 @@ function App() {
   const size = useSelector((state) => state.table.size);
 
   useEffect(() => {
-    console.log("Refetch page")
+    console.log("Refetch")
     loadData();
   }, [page]);
 

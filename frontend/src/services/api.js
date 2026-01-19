@@ -14,5 +14,6 @@ export const createRow = async (rowData) => {
 
 // TODO: implement and clear all rows
 export const deleteRowById = async (id) => {
-  await axios.delete(`${API_BASE_URL}/rows/${id}`);
+  const response = await axios.delete(`${API_BASE_URL}/rows/${id}`);
+  return response.data;
 };

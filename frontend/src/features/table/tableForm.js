@@ -12,7 +12,6 @@ function TableForm({ onRowAdded }) {
   const [typeFreeText, setTypeFreeText] = useState('');
   const [errors, setErrors] = useState({});
   
-  // TODO: not used,see row 55-56
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -23,6 +22,8 @@ function TableForm({ onRowAdded }) {
       newErrors.typeNumber = 'Type Number is required';
     } else if (parseInt(typeNumber) < 1) {
       newErrors.typeNumber = 'Type Number must be at least 1';
+    } else if (parseInt(typeNumber) > 2147483647) {
+      newErrors.typeNumber = 'Type Number must not exceed 2,147,483,647';
     }
     
     if (!typeSelector || typeSelector === '') {
@@ -31,6 +32,8 @@ function TableForm({ onRowAdded }) {
     
     if (!typeFreeText || typeFreeText.trim() === '') {
       newErrors.typeFreeText = 'Type Free Text is required';
+    } else if (typeFreeText.length > 1000) {
+      newErrors.typeFreeText = 'Type Free Text must not exceed 1000 characters';
     }
     
     setErrors(newErrors);
@@ -52,14 +55,13 @@ function TableForm({ onRowAdded }) {
     try {
       const newRow = await createRow(rowData);
       
-      // TODO: table bug
-      // dispatch(addRow(newRow));
-      
+      setTypeNumber('');
+      setTypeSelector('');
+      setTypeFreeText('');
       setErrors({});
       
       enqueueSnackbar('Row added successfully!', { variant: 'success' });
    
-      // TODO: ask Claude: onRowAdded?.()
       if (onRowAdded) onRowAdded();
     } catch (error) {
       console.error('Error creating row:', error);
@@ -71,6 +73,8 @@ function TableForm({ onRowAdded }) {
         errorMessage = violations.map(v => v.message).join(', ');
       } else if (error.response?.data?.message) {
         errorMessage = error.response.data.message;
+      } else if (error.response?.data?.error) {
+        errorMessage = error.response.data.error;
       } else if (error.message) {
         errorMessage = error.message;
       }
@@ -80,7 +84,7 @@ function TableForm({ onRowAdded }) {
   };
 
   return (
-    <Box sx={{ display: 'flex', gap: 2, marginBottom: 3 }}>
+    <Box sx={{ display: 'flex', gap: 2, marginBottom: 3, alignItems: 'flex-start' }}>
       <TextField
         type="number"
         label="Type Number"
@@ -90,13 +94,17 @@ function TableForm({ onRowAdded }) {
           if (errors.typeNumber) setErrors({...errors, typeNumber: null});
         }}
         error={!!errors.typeNumber}
-        helperText={errors.typeNumber}
+        helperText={errors.typeNumber || ' '}
+        inputProps={{ max: 2147483647, min: 1 }}
+        sx={{ width: 180 }}
       />
       
-      <FormControl sx={{ minWidth: 120 }} error={!!errors.typeSelector}>
-        <InputLabel>Type Selector</InputLabel>
+      <FormControl sx={{ width: 180 }} error={!!errors.typeSelector}>
+        <InputLabel id="type-selector-label">Type Selector</InputLabel>
         <Select
+          labelId="type-selector-label"
           value={typeSelector}
+          label="Type Selector"
           onChange={(e) => {
             setTypeSelector(e.target.value);
             if (errors.typeSelector) setErrors({...errors, typeSelector: null});
@@ -106,7 +114,7 @@ function TableForm({ onRowAdded }) {
           <MenuItem value="B">Option B</MenuItem>
           <MenuItem value="C">Option C</MenuItem>
         </Select>
-        {errors.typeSelector && <FormHelperText>{errors.typeSelector}</FormHelperText>}
+        <FormHelperText>{errors.typeSelector || ' '}</FormHelperText>
       </FormControl>
       
       <TextField
@@ -117,10 +125,16 @@ function TableForm({ onRowAdded }) {
           if (errors.typeFreeText) setErrors({...errors, typeFreeText: null});
         }}
         error={!!errors.typeFreeText}
-        helperText={errors.typeFreeText}
+        helperText={errors.typeFreeText || `${typeFreeText.length}/1000`}
+        inputProps={{ maxLength: 1000 }}
+        sx={{ flexGrow: 1 }}
       />
       
-      <Button variant="contained" onClick={handleSubmit}>
+      <Button 
+        variant="contained" 
+        onClick={handleSubmit}
+        sx={{ height: '56px', marginTop: 0 }}
+      >
         Add Row
       </Button>
     </Box>
