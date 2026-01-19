@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Container, Typography } from '@mui/material';
-import TableForm from './features/table/tableForm';
+import { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TableView from './components/TableView';
+import TableForm from './features/table/TableForm';
 import { setRows } from './features/table/tableSlice';
 import { fetchRows } from './services/api';
 
@@ -12,25 +12,37 @@ function App() {
   const size = useSelector((state) => state.table.size);
 
   useEffect(() => {
+    console.log("Refetch page")
     loadData();
   }, [page]);
 
-  const loadData = async () => {
+
+  // TODO: ask Claude
+  const loadData = useCallback(async () => {
     try {
       const data = await fetchRows(page, size);
       dispatch(setRows(data));
     } catch (error) {
       console.error('Error loading data:', error);
     }
-  };
+  }, [page, size]) 
+  
+  // const loadData = async () => {
+  //   try {
+  //     const data = await fetchRows(page, size);
+  //     dispatch(setRows(data));
+  //   } catch (error) {
+  //     console.error('Error loading data:', error);
+  //   }
+  // };
 
   return (
     <Container maxWidth="lg" sx={{ marginTop: 4 }}>
       <Typography variant="h4" gutterBottom>
         Table Management
       </Typography>
-      
-      <TableForm onRowAdded={loadData} />
+
+    <TableForm onRowAdded={loadData} />
       <TableView />
     </Container>
   );

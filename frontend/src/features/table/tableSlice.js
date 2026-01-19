@@ -11,8 +11,11 @@ const tableSlice = createSlice({
   name: 'table',
   initialState,
   reducers: {
+    // TODO: probably not needed
     addRow: (state, action) => {
-      state.rows.push(action.payload);
+      // TODO: ask claude if this is better than the row below
+      state.rows = [...state.rows, action.payload];
+      // state.rows.push(action.payload);
       state.totalCount += 1;
     },
     setRows: (state, action) => {
@@ -24,6 +27,7 @@ const tableSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    // TODO: not used
     deleteRow: (state, action) => {
       state.rows = state.rows.filter(row => row.id !== action.payload);
       state.totalCount -= 1;

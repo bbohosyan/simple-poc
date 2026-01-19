@@ -5,12 +5,14 @@ import { useSnackbar } from 'notistack';
 import { addRow } from './tableSlice';
 import { createRow } from '../../services/api';
 
+
 function TableForm({ onRowAdded }) {
   const [typeNumber, setTypeNumber] = useState('');
   const [typeSelector, setTypeSelector] = useState('');
   const [typeFreeText, setTypeFreeText] = useState('');
   const [errors, setErrors] = useState({});
   
+  // TODO: not used,see row 55-56
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -50,12 +52,14 @@ function TableForm({ onRowAdded }) {
     try {
       const newRow = await createRow(rowData);
       
-      dispatch(addRow(newRow));
+      // TODO: table bug
+      // dispatch(addRow(newRow));
       
       setErrors({});
       
       enqueueSnackbar('Row added successfully!', { variant: 'success' });
-      
+   
+      // TODO: ask Claude: onRowAdded?.()
       if (onRowAdded) onRowAdded();
     } catch (error) {
       console.error('Error creating row:', error);

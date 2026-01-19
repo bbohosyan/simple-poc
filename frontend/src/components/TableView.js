@@ -12,7 +12,7 @@ function TableView() {
 
   const totalPages = Math.ceil(totalCount / size);
 
-  const handlePageChange = (event, value) => {
+  const handlePageChange = (_, value) => {
     dispatch(setPage(value - 1));
   };
 
