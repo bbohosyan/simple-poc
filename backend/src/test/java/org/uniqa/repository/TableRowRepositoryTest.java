@@ -20,7 +20,6 @@ class TableRowRepositoryTest {
     @BeforeEach
     @Transactional
     void setup() {
-        // Clean database before each test
         repository.deleteAll();
     }
 
@@ -74,7 +73,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testFindAll_WithMultipleRows() {
-        // Create multiple rows
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -98,7 +96,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testCount_WithRows() {
-        // Create 3 rows
         for (int i = 1; i <= 3; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -138,7 +135,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testDeleteAll() {
-        // Create multiple rows
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -157,7 +153,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testPagination_FirstPage() {
-        // Create 15 rows
         for (int i = 1; i <= 15; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -174,7 +169,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testPagination_SecondPage() {
-        // Create 15 rows
         for (int i = 1; i <= 15; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -191,7 +185,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testPagination_EmptyPage() {
-        // Create only 5 rows
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -209,9 +202,9 @@ class TableRowRepositoryTest {
     @Transactional
     void testPersist_WithMaxValues() {
         TableRow row = new TableRow();
-        row.typeNumber = 2147483647; // Integer.MAX_VALUE
+        row.typeNumber = 2147483647;
         row.typeSelector = "C";
-        row.typeFreeText = "x".repeat(1000); // Max length
+        row.typeFreeText = "x".repeat(1000);
 
         repository.persist(row);
 
@@ -226,9 +219,9 @@ class TableRowRepositoryTest {
     @Transactional
     void testPersist_WithMinValues() {
         TableRow row = new TableRow();
-        row.typeNumber = 1; // Minimum valid value
+        row.typeNumber = 1;
         row.typeSelector = "A";
-        row.typeFreeText = "a"; // Minimum non-empty text
+        row.typeFreeText = "a";
 
         repository.persist(row);
 
@@ -242,7 +235,6 @@ class TableRowRepositoryTest {
     @Test
     @Transactional
     void testPersist_MultipleRowsWithSameData() {
-        // Create two rows with identical data
         TableRow row1 = new TableRow();
         row1.typeNumber = 5;
         row1.typeSelector = "B";
@@ -274,14 +266,12 @@ class TableRowRepositoryTest {
         repository.persist(row);
         Long id = row.id;
 
-        // Update the row
         row.typeNumber = 20;
         row.typeSelector = "B";
         row.typeFreeText = "Updated text";
 
         repository.persist(row);
 
-        // Verify update
         TableRow updated = repository.findById(id);
         assertEquals(20, updated.typeNumber, "Type number should be updated");
         assertEquals("B", updated.typeSelector, "Type selector should be updated");
