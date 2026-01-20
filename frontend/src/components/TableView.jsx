@@ -25,7 +25,6 @@ function TableView() {
       await deleteRowById(id);
       enqueueSnackbar('Row deleted successfully!', { variant: 'success' });
       
-      // Презареди данните
       const data = await fetchRows(page, size);
       dispatch(setRows(data));
     } catch (error) {

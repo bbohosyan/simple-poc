@@ -1,8 +1,8 @@
 import { Container, Typography } from '@mui/material';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TableView from './components/TableView';
-import TableForm from './features/table/TableForm';
+import TableView from './components/TableView.jsx';
+import TableForm from './features/table/TableForm.jsx';
 import { setRows } from './features/table/tableSlice';
 import { fetchRows } from './services/api';
 
@@ -17,7 +17,6 @@ function App() {
   }, [page]);
 
 
-  // TODO: ask Claude
   const loadData = useCallback(async () => {
     try {
       const data = await fetchRows(page, size);

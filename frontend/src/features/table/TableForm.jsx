@@ -54,14 +54,11 @@ function TableForm({ onRowAdded }) {
 
     try {
       const newRow = await createRow(rowData);
-      
-      setTypeNumber('');
-      setTypeSelector('');
-      setTypeFreeText('');
+
       setErrors({});
-      
+
       enqueueSnackbar('Row added successfully!', { variant: 'success' });
-   
+
       if (onRowAdded) onRowAdded();
     } catch (error) {
       console.error('Error creating row:', error);

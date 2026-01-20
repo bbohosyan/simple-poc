@@ -3,16 +3,20 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Build argument for API URL
+ARG VITE_API_URL=http://localhost:8080
+ENV VITE_API_URL=$VITE_API_URL
+
 # Copy package files first for layer caching
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --silent
+RUN npm install --silent
 
-# Copy source code
+# Copy source code (including index.html and vite.config.js)
 COPY . .
 
-# Build the application
+# Build the application with Vite
 RUN npm run build
 
 # Stage 2: Production with nginx
