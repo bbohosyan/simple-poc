@@ -33,7 +33,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testGetAllRows_DefaultPagination() {
+    void getAllRows_DefaultPagination() {
         given()
             .when()
             .get("/rows")
@@ -47,7 +47,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testGetAllRows_CustomPagination() {
+    void getAllRows_CustomPagination() {
         given()
             .queryParam("page", 0)
             .queryParam("size", 5)
@@ -60,7 +60,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testGetAllRows_SizeExceedsMaximum() {
+    void getAllRows_SizeExceedsMaximum() {
         given()
             .queryParam("page", 0)
             .queryParam("size", 101)
@@ -72,7 +72,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testGetAllRows_SizeLessThanMinimum() {
+    void getAllRows_SizeLessThanMinimum() {
         given()
             .queryParam("page", 0)
             .queryParam("size", 0)
@@ -84,7 +84,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_ValidData() {
+    void createRow_ValidData() {
         String requestBody = """
             {
                 "typeNumber": 42,
@@ -107,7 +107,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_WithXSSAttempt() {
+    void createRow_WithXSSAttempt() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -128,7 +128,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_MissingTypeNumber() {
+    void createRow_MissingTypeNumber() {
         String requestBody = """
             {
                 "typeSelector": "A",
@@ -146,7 +146,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_TypeNumberTooSmall() {
+    void createRow_TypeNumberTooSmall() {
         String requestBody = """
             {
                 "typeNumber": 0,
@@ -165,7 +165,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_TypeNumberAtMinimum() {
+    void createRow_TypeNumberAtMinimum() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -185,7 +185,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_TypeNumberAtMaximum() {
+    void createRow_TypeNumberAtMaximum() {
         String requestBody = """
             {
                 "typeNumber": 2147483647,
@@ -205,7 +205,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_MissingTypeSelector() {
+    void createRow_MissingTypeSelector() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -223,7 +223,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_EmptyTypeSelector() {
+    void createRow_EmptyTypeSelector() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -242,7 +242,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_MissingTypeFreeText() {
+    void createRow_MissingTypeFreeText() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -260,7 +260,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_EmptyTypeFreeText() {
+    void createRow_EmptyTypeFreeText() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -279,7 +279,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_TypeFreeTextTooLong() {
+    void createRow_TypeFreeTextTooLong() {
         String longText = "a".repeat(1001);
         String requestBody = String.format("""
             {
@@ -299,7 +299,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_TypeFreeTextAtMaxLength() {
+    void createRow_TypeFreeTextAtMaxLength() {
         String maxText = "a".repeat(1000);
         String requestBody = String.format("""
             {
@@ -320,7 +320,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testDeleteRow_ExistingRow() {
+    void deleteRow_ExistingRow() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -355,7 +355,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testDeleteRow_NonExistingRow() {
+    void deleteRow_NonExistingRow() {
         given()
             .when()
             .delete("/rows/99999")
@@ -364,7 +364,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateMultipleRows_AndPagination() {
+    void createMultipleRows_AndPagination() {
         for (int i = 1; i <= 15; i++) {
             String requestBody = String.format("""
                 {
@@ -407,7 +407,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_AllValidSelectors() {
+    void createRow_AllValidSelectors() {
         String[] selectors = {"A", "B", "C"};
 
         for (String selector : selectors) {
@@ -431,7 +431,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_SpecialCharactersInFreeText() {
+    void createRow_SpecialCharactersInFreeText() {
         String requestBody = """
             {
                 "typeNumber": 1,
@@ -451,7 +451,7 @@ class TableRowControllerTest {
     }
 
     @Test
-    void testCreateRow_UnicodeCharacters() {
+    void createRow_UnicodeCharacters() {
         String requestBody = """
             {
                 "typeNumber": 1,

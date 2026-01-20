@@ -25,7 +25,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPersist_ValidRow() {
+    void Persist_ValidRow() {
         TableRow row = new TableRow();
         row.typeNumber = 42;
         row.typeSelector = "A";
@@ -39,7 +39,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testFindById_ExistingRow() {
+    void FindById_ExistingRow() {
         TableRow row = new TableRow();
         row.typeNumber = 10;
         row.typeSelector = "B";
@@ -58,21 +58,21 @@ class TableRowRepositoryTest {
     }
 
     @Test
-    void testFindById_NonExistingRow() {
+    void FindById_NonExistingRow() {
         TableRow found = repository.findById(99999L);
         assertNull(found, "Should not find non-existing row");
     }
 
     @Test
     @Transactional
-    void testFindAll_EmptyDatabase() {
+    void FindAll_EmptyDatabase() {
         List<TableRow> rows = repository.findAll().list();
         assertTrue(rows.isEmpty(), "Empty database should return empty list");
     }
 
     @Test
     @Transactional
-    void testFindAll_WithMultipleRows() {
+    void FindAll_WithMultipleRows() {
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -88,14 +88,14 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testCount_EmptyDatabase() {
+    void Count_EmptyDatabase() {
         long count = repository.count();
         assertEquals(0, count, "Empty database should have count 0");
     }
 
     @Test
     @Transactional
-    void testCount_WithRows() {
+    void Count_WithRows() {
         for (int i = 1; i <= 3; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -110,7 +110,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testDeleteById_ExistingRow() {
+    void DeleteById_ExistingRow() {
         TableRow row = new TableRow();
         row.typeNumber = 1;
         row.typeSelector = "A";
@@ -127,14 +127,14 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testDeleteById_NonExistingRow() {
+    void DeleteById_NonExistingRow() {
         boolean deleted = repository.deleteById(99999L);
         assertFalse(deleted, "Delete should return false for non-existing row");
     }
 
     @Test
     @Transactional
-    void testDeleteAll() {
+    void DeleteAll() {
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -152,7 +152,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPagination_FirstPage() {
+    void Pagination_FirstPage() {
         for (int i = 1; i <= 15; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -168,7 +168,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPagination_SecondPage() {
+    void Pagination_SecondPage() {
         for (int i = 1; i <= 15; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -184,7 +184,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPagination_EmptyPage() {
+    void Pagination_EmptyPage() {
         for (int i = 1; i <= 5; i++) {
             TableRow row = new TableRow();
             row.typeNumber = i;
@@ -200,7 +200,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPersist_WithMaxValues() {
+    void Persist_WithMaxValues() {
         TableRow row = new TableRow();
         row.typeNumber = 2147483647;
         row.typeSelector = "C";
@@ -217,7 +217,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPersist_WithMinValues() {
+    void Persist_WithMinValues() {
         TableRow row = new TableRow();
         row.typeNumber = 1;
         row.typeSelector = "A";
@@ -234,7 +234,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testPersist_MultipleRowsWithSameData() {
+    void Persist_MultipleRowsWithSameData() {
         TableRow row1 = new TableRow();
         row1.typeNumber = 5;
         row1.typeSelector = "B";
@@ -257,7 +257,7 @@ class TableRowRepositoryTest {
 
     @Test
     @Transactional
-    void testUpdate_ExistingRow() {
+    void Update_ExistingRow() {
         TableRow row = new TableRow();
         row.typeNumber = 10;
         row.typeSelector = "A";

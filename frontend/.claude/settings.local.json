@@ -14,7 +14,8 @@
       "Bash(./mvnw test:*)",
       "Bash(./mvnw.cmd test:*)",
       "Bash(java:*)",
-      "Bash(./mvnw.cmd clean test)"
+      "Bash(./mvnw.cmd clean test)",
+      "Bash(find:*)"
     ]
   }
 }
